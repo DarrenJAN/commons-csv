@@ -24,9 +24,14 @@ import static org.apache.commons.io.IOUtils.EOF;
 
 import java.io.IOException;
 import java.io.Reader;
-
+import java.io.InputStreamReader;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.UnsynchronizedBufferedReader;
+
+import java.nio.charset.CharsetEncoder;
+import java.nio.charset.Charset;
+import java.nio.CharBuffer;
+
 
 /**
  * A special buffered reader which supports sophisticated read access.
@@ -49,11 +54,23 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
     private long position;
     private long positionMark;
 
+    /** The number of bytes read so far */
+    private long bytesRead;
+    /** Encoder used to calculate the bytes of characters */
+    CharsetEncoder encoder;
+
     /**
      * Constructs a new instance using the default buffer size.
      */
     ExtendedBufferedReader(final Reader reader) {
         super(reader);
+    }
+
+    ExtendedBufferedReader(final Reader reader, String encoding) {
+        super(reader);
+        if (encoding != null) {
+            encoder = Charset.forName(encoding).newEncoder();
+        }
     }
 
     /**
@@ -120,6 +137,9 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
         }
         lastChar = current;
         position++;
+        if (encoder != null) {
+            this.bytesRead += encoder.encode(CharBuffer.wrap(new char[] { (char)current })).limit();
+        }
         return lastChar;
     }
 
@@ -188,6 +208,15 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
         lastChar = lastCharMark;
         position = positionMark;
         super.reset();
+    }
+
+    /**
+     * Gets the number of bytes read by the reader.
+     *
+     * @return the number of bytes read by the read
+     */
+    long getBytesRead() {
+        return this.bytesRead;
     }
 
 }

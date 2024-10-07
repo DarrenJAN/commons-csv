@@ -455,6 +455,16 @@ final class Lexer implements Closeable {
         return ch == Constants.LF || ch == Constants.CR;
     }
 
+    /**
+     * Returns the number of bytes read
+     *
+     * @return the number of bytes read
+     */
+    long getBytesRead() {
+        return reader.getBytesRead();
+    }
+
+
     // TODO escape handling needs more work
     /**
      * Handle an escape sequence. The current character must be the escape character. On return, the next character is available by calling
