@@ -820,6 +820,7 @@ public class CSVParserTest {
         validateRecordPosition(String.valueOf(LF));
     }
 
+    @Test
     public void testGetRecordThreeBytesRead() throws Exception {
         String code = "id,date,val5,val4\n"
                 + "11111111111111,'4017-09-01',きちんと節分近くには咲いてる～,v4\n"

@@ -24,7 +24,6 @@ import static org.apache.commons.io.IOUtils.EOF;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.io.InputStreamReader;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.input.UnsynchronizedBufferedReader;
 
