@@ -55,13 +55,10 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
 
     /** The number of bytes read so far */
     private long bytesRead;
+    private long bytesReadMark;
+
     /** Encoder used to calculate the bytes of characters */
     CharsetEncoder encoder;
-    
-    /**
-     * A flag to indicate if the read is a peek operation.
-     */
-    private boolean isReadPeek;
 
     /**
      * Constructs a new instance using the default buffer size.
@@ -75,9 +72,8 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
         if (encoding != null) {
             encoder = Charset.forName(encoding).newEncoder();
         }
-        isReadPeek = false;
     }
-    
+
     /**
      * Closes the stream.
      *
@@ -130,6 +126,7 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
         lineNumberMark = lineNumber;
         lastCharMark = lastChar;
         positionMark = position;
+        bytesReadMark = bytesRead;
         super.mark(readAheadLimit);
     }
 
@@ -140,8 +137,8 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
             current == EOF && lastChar != CR && lastChar != LF && lastChar != EOF) {
             lineNumber++;
         }
-        if (encoder != null && !isReadPeek) {
-            this.bytesRead += getCharBytes(current); 
+        if (encoder != null) {
+            this.bytesRead += getCharBytes(current);
         }
         lastChar = current;
         position++;
@@ -161,8 +158,8 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
      *     - Consists of UTF-8 some 3-byte chars and 4-byte chars
      */
     private long getCharBytes(int current) throws CharacterCodingException {
-        char cChar = (char)current;
-        char lChar = (char)lastChar;
+        char cChar = (char) current;
+        char lChar = (char) lastChar;
         if (!Character.isSurrogate(cChar)) {
             return encoder.encode(
                 CharBuffer.wrap(new char[] {cChar})).limit();
@@ -241,6 +238,7 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
         lineNumber = lineNumberMark;
         lastChar = lastCharMark;
         position = positionMark;
+        bytesRead = bytesReadMark;
         super.reset();
     }
 
@@ -251,22 +249,6 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
      */
     long getBytesRead() {
         return this.bytesRead;
-    }
-
-    /**
-     * Returns the next character in the current reader without consuming it. So the next call to {@link #read()} will still return this value.
-     *
-     * @return the next character
-     * @throws IOException If an I/O error occurs
-     */
-    @Override
-    public int peek() throws IOException {
-        isReadPeek = true;
-        mark(1);
-        final int c = read();
-        reset();
-        isReadPeek = false;
-        return c;
     }
 
 }

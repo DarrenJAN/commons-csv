@@ -695,21 +695,20 @@ public class CSVParserTest {
 
     @Test
     public void testGetRecordThreeBytesRead() throws Exception {
-        String code = "id,date,val5,val4\n"
-                + "11111111111111,'4017-09-01',きちんと節分近くには咲いてる～,v4\n"
-                + "22222222222222,'4017-01-01',おはよう私の友人～,v4\n"
-                + "33333333333333,'4017-01-01',きる自然の力ってすごいな～,v4\n";
-                
+        String code = "id,date,val5,val4\n" +
+            "11111111111111,'4017-09-01',きちんと節分近くには咲いてる～,v4\n" +
+            "22222222222222,'4017-01-01',おはよう私の友人～,v4\n" +
+            "33333333333333,'4017-01-01',きる自然の力ってすごいな～,v4\n";
+        // String code = "'1',4";
         // final CSVFormat format = CSVFormat.newFormat(',').withQuote('\'');
         final CSVFormat format = CSVFormat.Builder.create()
                                .setDelimiter(',')
                                .setQuote('\'')
                                .build();
         // CSVParser parser = new CSVParser(new StringReader(code), format, 0L, 1L, "UTF-8");
-        
         CSVParser parser =  format.parse(new StringReader(code), 0L, 1L, "UTF-8");
 
-        CSVRecord record;
+        CSVRecord record = new CSVRecord(parser, null, null, 1L, 0L, 0L);
         assertEquals(0, parser.getRecordNumber());
         assertNotNull(record = parser.nextRecord());
         assertEquals(1, record.getRecordNumber());
@@ -737,16 +736,16 @@ public class CSVParserTest {
 
     @Test
     public void testGetRecordFourBytesRead() throws Exception {
-        String code = "id,a,b,c\n"
-            + "1,😊,🤔,😂\n"
-            + "2,😊,🤔,😂\n"
-            + "3,😊,🤔,😂\n";
+        String code = "id,a,b,c\n" +
+            "1,😊,🤔,😂\n" +
+            "2,😊,🤔,😂\n" +
+            "3,😊,🤔,😂\n";
         // final CSVFormat format = CSVFormat.newFormat(',').withQuote('\'');
         final CSVFormat format = CSVFormat.Builder.create()
             .setDelimiter(',')
             .setQuote('\'')
             .build();
-        
+
         // CSVParser parser = new CSVParser(new StringReader(code), format, 0L, 1L, "UTF-8");
         CSVParser parser =  format.parse(new StringReader(code), 0L, 1L, "UTF-8");
 
