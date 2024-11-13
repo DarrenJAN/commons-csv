@@ -15,6 +15,11 @@
  * limitations under the License.
  */
 
+ /*
+
+ * Modifications copyright © 2017, 2022, 2024 MarkLogic Corporation.
+
+ */
 package org.apache.commons.csv;
 
 import static org.apache.commons.csv.Constants.CR;
@@ -58,7 +63,7 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
     private long bytesReadMark;
 
     /** Encoder used to calculate the bytes of characters */
-    CharsetEncoder encoder;
+    private CharsetEncoder encoder;
 
     /**
      * Constructs a new instance using the default buffer size.

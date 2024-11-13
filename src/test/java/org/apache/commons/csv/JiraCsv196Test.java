@@ -14,6 +14,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+ /*
+
+ * Modifications copyright © 2017, 2022, 2024 MarkLogic Corporation.
+
+ */
 package org.apache.commons.csv;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,8 +41,7 @@ public class JiraCsv196Test {
                                .setDelimiter(',')
                                .setQuote('\'')
                                .build();
-        // CSVParser parser = new CSVParser(getTestInput(
-            // "org/apache/commons/csv/CSV-196/japanese.csv"), format, 0L, 1L, "UTF-8");
+
         CSVParser parser =  format.parse(getTestInput(
             "org/apache/commons/csv/CSV-196/japanese.csv"), 0L, 1L, "UTF-8");
         long[] charByteKey = {0, 89, 242, 395};

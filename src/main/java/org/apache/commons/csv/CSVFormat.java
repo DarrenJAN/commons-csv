@@ -15,6 +15,11 @@
  * limitations under the License.
  */
 
+ /*
+
+ * Modifications copyright © 2024 MarkLogic Corporation.
+
+ */
 package org.apache.commons.csv;
 
 import static org.apache.commons.io.IOUtils.EOF;
