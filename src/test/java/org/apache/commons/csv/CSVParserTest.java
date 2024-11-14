@@ -740,7 +740,7 @@ public class CSVParserTest {
             "2,😊,🤔,😂\n" +
             "3,😊,🤔,😂\n";
         CSVFormat format = CSVFormat.Builder.create().setDelimiter(',').setQuote('\'').build();
-        
+
         try (CSVParser parser =  format.parse(new StringReader(code), 0L, 1L, "UTF-8")) {
             CSVRecord record = new CSVRecord(parser, null, null, 1L, 0L, 0L);
 
@@ -764,8 +764,6 @@ public class CSVParserTest {
             assertEquals(record.getCharacterByte(), 43);
             parser.close();
         }
-
-        
     }
 
     @Test
