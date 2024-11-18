@@ -201,9 +201,9 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
             return asThis();
         }
 
-        /** 
+        /**
          * Sets the Charset to use for the reader.
-         * 
+         *
          * @param charset the Charset to use for the reader.
          * @return this instance.
          */
@@ -546,7 +546,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @throws CSVException Thrown on invalid input.
      * @since 1.13.0.
      */
-    private CSVParser(final Reader reader, final CSVFormat format, final long characterOffset, final long recordNumber, final Charset charset) 
+    private CSVParser(final Reader reader, final CSVFormat format, final long characterOffset, final long recordNumber, final Charset charset)
         throws IOException {
         Objects.requireNonNull(reader, "reader");
         Objects.requireNonNull(format, "format");

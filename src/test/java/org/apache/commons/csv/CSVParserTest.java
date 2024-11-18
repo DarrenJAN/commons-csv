@@ -750,7 +750,7 @@ public class CSVParserTest {
                                                   .get();
         try (CSVParser parser = CSVParser.builder().setReader(new StringReader(code)).setFormat(format).setCharset(UTF_8).get()) {
             CSVRecord record = new CSVRecord(parser, null, null, 1L, 0L, 0L);
-            
+
             assertEquals(0, parser.getRecordNumber());
             assertNotNull(record = parser.nextRecord());
             assertEquals(1, record.getRecordNumber());
