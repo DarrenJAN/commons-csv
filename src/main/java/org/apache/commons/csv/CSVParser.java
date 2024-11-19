@@ -202,9 +202,9 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
         }
 
         /**
-         * Sets the Charset to use for the reader.
+         * Sets the character encoding to be used for the reader.
          *
-         * @param charset the Charset to use for the reader.
+         * @param charset the character encoding.
          * @return this instance.
          */
         public Builder setCharset(final Charset charset) {
@@ -538,7 +538,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
      * @param recordNumber
      *            The next record number to assign.
      * @param charset
-     *            The Charset to decode the given file.
+     *            The character encoding to be used for the reader.
      * @throws IllegalArgumentException
      *             If the parameters of the format are inconsistent or if either the reader or format is null.
      * @throws IOException

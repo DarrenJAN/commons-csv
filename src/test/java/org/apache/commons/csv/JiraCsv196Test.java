@@ -30,14 +30,14 @@ public class JiraCsv196Test {
     @Test
     public void parseThreeBytes() throws IOException {
         final CSVFormat format = CSVFormat.Builder.create()
-                                                  .setDelimiter(',')
-                                                  .setQuote('\'')
-                                                  .get();
+            .setDelimiter(',')
+            .setQuote('\'')
+            .get();
         CSVParser parser = new CSVParser.Builder()
-                                        .setFormat(format)
-                                        .setReader(getTestInput("org/apache/commons/csv/CSV-196/japanese.csv"))
-                                        .setCharset(StandardCharsets.UTF_8)
-                                        .get();
+            .setFormat(format)
+            .setReader(getTestInput("org/apache/commons/csv/CSV-196/japanese.csv"))
+            .setCharset(StandardCharsets.UTF_8)
+            .get();
         long[] charByteKey = {0, 89, 242, 395};
         int idx = 0;
         for (CSVRecord record : parser) {
@@ -50,14 +50,14 @@ public class JiraCsv196Test {
     @Test
     public void parseFourBytes() throws IOException {
         final CSVFormat format = CSVFormat.Builder.create()
-                                                  .setDelimiter(',')
-                                                  .setQuote('\'')
-                                                  .get();
+            .setDelimiter(',')
+            .setQuote('\'')
+            .get();
         CSVParser parser = new CSVParser.Builder()
-                                        .setFormat(format)
-                                        .setReader(getTestInput("org/apache/commons/csv/CSV-196/emoji.csv"))
-                                        .setCharset(StandardCharsets.UTF_8)
-                                        .get();
+            .setFormat(format)
+            .setReader(getTestInput("org/apache/commons/csv/CSV-196/emoji.csv"))
+            .setCharset(StandardCharsets.UTF_8)
+            .get();
         long[] charByteKey = {0, 84, 701, 1318, 1935};
         int idx = 0;
         for (CSVRecord record : parser) {

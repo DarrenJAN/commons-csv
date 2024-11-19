@@ -708,9 +708,9 @@ public class CSVParserTest {
             "22222222222222,'4017-01-01',おはよう私の友人～,v4\n" +
             "33333333333333,'4017-01-01',きる自然の力ってすごいな～,v4\n";
         final CSVFormat format = CSVFormat.Builder.create()
-                                                  .setDelimiter(',')
-                                                  .setQuote('\'')
-                                                  .get();
+            .setDelimiter(',')
+            .setQuote('\'')
+            .get();
         try (CSVParser parser = CSVParser.builder().setReader(new StringReader(code)).setFormat(format).setCharset(UTF_8).get() ) {
             CSVRecord record = new CSVRecord(parser, null, null, 1L, 0L, 0L);
 
@@ -741,13 +741,13 @@ public class CSVParserTest {
     @Test
     public void testGetRecordFourBytesRead() throws Exception {
         String code = "id,a,b,c\n" +
-                      "1,😊,🤔,😂\n" +
-                      "2,😊,🤔,😂\n" +
-                      "3,😊,🤔,😂\n";
+            "1,😊,🤔,😂\n" +
+            "2,😊,🤔,😂\n" +
+            "3,😊,🤔,😂\n";
         final CSVFormat format = CSVFormat.Builder.create()
-                                                  .setDelimiter(',')
-                                                  .setQuote('\'')
-                                                  .get();
+            .setDelimiter(',')
+            .setQuote('\'')
+            .get();
         try (CSVParser parser = CSVParser.builder().setReader(new StringReader(code)).setFormat(format).setCharset(UTF_8).get()) {
             CSVRecord record = new CSVRecord(parser, null, null, 1L, 0L, 0L);
 

@@ -57,7 +57,7 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
     private long bytesRead;
     private long bytesReadMark;
 
-    /** Encoder used to calculate the bytes of characters. */
+    /** Encoder for calculating the number of bytes for each character read. */
     private CharsetEncoder encoder;
 
     /**
