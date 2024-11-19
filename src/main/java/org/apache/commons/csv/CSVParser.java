@@ -521,7 +521,7 @@ public final class CSVParser implements Iterable<CSVRecord>, Closeable {
             this(reader, format, characterOffset, recordNumber, null);
         }
 
-            /**
+    /**
      * Constructs a new instance using the given {@link CSVFormat}
      *
      * <p>
