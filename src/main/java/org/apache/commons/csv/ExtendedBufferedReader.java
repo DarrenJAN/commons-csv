@@ -69,7 +69,7 @@ final class ExtendedBufferedReader extends UnsynchronizedBufferedReader {
 
     ExtendedBufferedReader(final Reader reader, Charset charset, boolean enableByteTracking) {
         super(reader);
-        if (enableByteTracking) {
+        if (charset != null && enableByteTracking) {
             encoder = charset.newEncoder();
         }
     }
